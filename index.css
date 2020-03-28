@@ -1,0 +1,17 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1, div{
+    text-align: center;
+}
+sup{
+    border-radius: .2em;
+    background-color: #03ef32;
+    padding: .1em .2em;
+}
+.heart{
+    color: #ff3a3a;
+}
+footer{
+    margin-top: 2em;
+}
