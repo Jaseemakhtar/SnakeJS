@@ -16,16 +16,27 @@ class Snake {
             ];
         this.xSpeed = 1;
         this.ySpeed = 0;
+        this.direction = RIGHT;
     }
 
     show(){
         for (let i = 0; i < this.body.length; i++) {
-            ctx.fillStyle = "#f8f8f8";
+            ctx.fillStyle = i == 0 ? "#880808": "#f8f8f8";
             ctx.fillRect(this.body[i].x * tile, this.body[i].y * tile, tile , tile);
             ctx.strokeStyle = "#000000"
             ctx.rect(this.body[i].x * tile, this.body[i].y * tile, tile, tile);
             ctx.stroke();
         }
+    }
+
+    checkSelf() {
+        for (let i = 4; i < this.body.length; i++) {
+            if (this.body[0].x == this.body[i].x  && this.body[0].y == this.body[i].y) {
+                this.xSpeed = this.ySpeed = 0;
+                return true;
+            }
+        }
+        return false;
     }
 
     update() {
@@ -52,25 +63,38 @@ class Snake {
     }
 
     move(dir){
+        
         switch(dir){
             case LEFT:
-                this.xSpeed = -1;
-                this.ySpeed = 0;
+                if (this.direction != RIGHT) {
+                    this.xSpeed = -1;
+                    this.ySpeed = 0;
+                    this.direction = dir;
+                }
                 break;
 
             case TOP:
-                this.xSpeed = 0;
-                this.ySpeed = -1;
+                if (this.direction != DOWN) {
+                    this.xSpeed = 0;
+                    this.ySpeed = -1;
+                    this.direction = dir;
+                }
                 break;
 
             case RIGHT:
-                this.xSpeed = 1;
-                this.ySpeed = 0;
+                if (this.direction != LEFT) {
+                    this.xSpeed = 1;
+                    this.ySpeed = 0;
+                    this.direction = dir;
+                }
                 break;
 
             case DOWN:
-                this.xSpeed = 0;
-                this.ySpeed = 1;
+                if (this.direction != TOP) {
+                    this.xSpeed = 0;
+                    this.ySpeed = 1;
+                    this.direction = dir;
+                }
                 break;
         }
     }

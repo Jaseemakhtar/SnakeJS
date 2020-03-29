@@ -1,5 +1,4 @@
 document.addEventListener('keydown', control)
-alert("Use arrow keys to control the snake!")
 const LEFT   = "left", 
       TOP    = "top", 
       RIGHT  = "right", 
@@ -18,6 +17,10 @@ function draw(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (snake.checkSelf()) {
+        alert("Game over!");
+        clearInterval(x);
+    }
     snake.update();
     snake.show();
     ctx.fillStyle = "violet";
